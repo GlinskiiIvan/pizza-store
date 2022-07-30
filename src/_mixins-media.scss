@@ -1,0 +1,30 @@
+@mixin LaptopL-1440 {
+  @media(max-width: 1440px){
+    @content;
+  }
+}
+@mixin Laptop-1024 {
+  @media(max-width: 1024px){
+    @content;
+  }
+}
+@mixin Tablet-768 {
+  @media(max-width: 768px){
+    @content;
+  }
+}
+@mixin MobileL-425 {
+  @media(max-width: 425px){
+    @content;
+  }
+}
+@mixin MobileM-375 {
+  @media(max-width: 375px){
+    @content;
+  }
+}
+@mixin MobileS-320 {
+  @media(max-width: 320px){
+    @content;
+  }
+}

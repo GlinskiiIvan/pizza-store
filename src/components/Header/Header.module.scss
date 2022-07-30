@@ -1,0 +1,66 @@
+@import "../../vars";
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  img {
+    margin-right: 17px;
+    width: 40px;
+    height: 40px ;
+  }
+  div {
+    h3 {
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: $font_color_dark;
+    }
+    p {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      color: $font_color_gray;
+    }
+  }
+}
+
+.cart {
+  button {
+    display: flex;
+    align-items: center;
+    background-color: $color_acent;
+    border-radius: 30px;
+    padding: 15px 25px;
+    color: $font_color_light;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.cartPrice {
+  padding-right: 10px;
+  border-right: 1px solid $font_color_gray;
+}
+
+.cartCount {
+  padding-left: 10px;
+  img {
+    margin-right: 5px;
+  }
+}

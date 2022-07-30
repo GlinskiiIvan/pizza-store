@@ -1,0 +1,35 @@
+@mixin adaptive-font($template-fs, $min-fs) {
+  $addSize: $template-fs - $min-fs;
+  $addMobSize: $addSize + $addSize * 0.7;
+
+  @media (min-width: 767px) {
+    font-size: calc( #{$min-fs + px} + #{$addSize} * (100vw / #{$container-max-width}) );
+  }
+  @media (max-width: 767px) {
+    font-size: calc( #{$min-fs + px} + #{$addMobSize} * ((100vw - 320px) / #{$container-max-width}) );
+  }
+}
+
+@mixin adaptive-width($template-fs, $min-fs) {
+  $addSize: $template-fs - $min-fs;
+  $addMobSize: $addSize + $addSize * 0.7;
+
+  @media (min-width: 767px) {
+    width: calc( #{$min-fs + px} + #{$addSize} * (100vw / #{$container-max-width}) );
+  }
+  @media (max-width: 767px) {
+    width: calc( #{$min-fs + px} + #{$addMobSize} * ((100vw - 320px) / #{$container-max-width}) );
+  }
+}
+
+@mixin adaptive-height($template-fs, $min-fs) {
+  $addSize: $template-fs - $min-fs;
+  $addMobSize: $addSize + $addSize * 0.7;
+
+  @media (min-width: 767px) {
+    height: calc( #{$min-fs + px} + #{$addSize} * (100vw / #{$container-max-width}) );
+  }
+  @media (max-width: 767px) {
+    height: calc( #{$min-fs + px} + #{$addMobSize} * ((100vw - 320px) / #{$container-max-width}) );
+  }
+}
