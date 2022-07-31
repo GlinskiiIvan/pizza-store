@@ -8,3 +8,10 @@
   background-color: $container_background_color;
   border-radius: 10px;
 }
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
