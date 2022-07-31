@@ -1,9 +1,12 @@
 @import "../../vars";
+@import "../../mixins-media";
+@import "../../mixins-adaptive";
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .logo {
@@ -38,9 +41,10 @@ header {
     align-items: center;
     background-color: $color_acent;
     border-radius: 30px;
-    padding: 15px 25px;
-    color: $font_color_light;
     font-size: 16px;
+    //padding: 15px 25px;
+    padding: 0.9375em 1.5625em;
+    color: $font_color_light;
     font-weight: 700;
     cursor: pointer;
     transition: all .3s ease;

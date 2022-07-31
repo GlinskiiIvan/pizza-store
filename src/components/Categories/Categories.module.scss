@@ -1,0 +1,25 @@
+@import "../../vars";
+@import "../../mixins-media";
+@import "../../mixins-adaptive";
+
+.wrapper {
+  display: flex;
+}
+
+.item {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.015em;
+  color: $font_color_dark;
+  background-color: $options_background_color;
+  border-radius: 30px;
+  //padding: 10px 20px;
+  padding: 0.625em 1.25em;
+  margin-right: 0.625em;
+  cursor: pointer;
+}
+
+.active {
+  color: $font_color_light;
+  background-color: $dark_background;
+}
