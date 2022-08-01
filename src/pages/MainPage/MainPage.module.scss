@@ -1,0 +1,19 @@
+@import "../../vars";
+@import "../../mixins-media";
+@import "../../mixins-adaptive";
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 0.01em;
+  color: $font_color_dark;
+  margin-bottom: 25px;
+}

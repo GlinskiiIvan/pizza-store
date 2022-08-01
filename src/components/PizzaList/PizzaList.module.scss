@@ -1,0 +1,13 @@
+@import "../../vars";
+@import "../../mixins-media";
+@import "../../mixins-adaptive";
+
+.wrapper {
+  /*display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;*/
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 50px 20px;
+}

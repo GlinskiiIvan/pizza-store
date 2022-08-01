@@ -1,0 +1,104 @@
+@import "../../../vars";
+@import "../../../mixins-media";
+@import "../../../mixins-adaptive";
+
+.wrapper {
+  text-align: center;
+
+  //width: 20%;
+  //margin: 10px;
+}
+
+.img {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+h4 {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  color: $font_color_dark;
+  margin-bottom: .75em;
+}
+
+.options {
+  background-color: $options_background_color;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.015em;
+  color: $font_color_dark;
+  padding: 0.36em 1.07em;
+  margin-bottom: 20px;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    li {
+      width: 100%;
+      padding: 5px;
+      cursor: pointer;
+      opacity: .6;
+      &.active {
+        opacity: 1;
+        background: $font_color_light;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+        border-radius: 5px;
+        cursor: default;
+      }
+    }
+  }
+}
+
+.buy {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.015em;
+    color: $font_color_dark;
+  }
+  button {
+    border: 1px solid $color_acent;
+    border-radius: 30px;
+    background-color: transparent;
+    color: $color_acent;
+    font-size: 16px;
+    padding: .625em 1.25em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover {
+      background-color: $color_acent;
+      color: $font_color_light;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+    span {
+      font-weight: inherit;
+      color: $font_color_light;
+      font-size: 13px;
+      padding: .23em .54em;
+      background-color: $color_acent;
+      border-radius: 100%;
+      /*position: relative;
+      &::after {
+        position: absolute;
+        display: block;
+        content: '';
+        background-color: $color_acent;
+        border-radius: 100%;
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+        top: 0;
+        right: 0;
+      }*/
+    }
+  }
+}
