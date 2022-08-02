@@ -10,4 +10,13 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 50px 20px;
+  @include LaptopL-1440 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @include Laptop-1024 {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include Tablet-600 {
+    grid-template-columns: 1fr;
+  }
 }

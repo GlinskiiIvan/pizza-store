@@ -7,10 +7,10 @@ import PizzaList from "../../components/PizzaList/PizzaList";
 const MainPage = (props) => {
     return (
         <div>
-            <div className={styles.options}>
+            {/*<div className={styles.options}>
                 <Categories />
                 <Sorting />
-            </div>
+            </div>*/}
             <h2 className={styles.title}>Все пиццы</h2>
             <PizzaList />
         </div>
