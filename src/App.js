@@ -9,8 +9,8 @@ function App() {
   return (
     <div className={styles.container}>
         <Header />
-        <MainPage />
-        {/*<CartPage />*/}
+        {/*<MainPage />*/}
+        <CartPage />
     </div>
   );
 }

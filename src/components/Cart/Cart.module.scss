@@ -13,8 +13,14 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 60px;
+  @include Tablet-550 {
+    flex-direction: column;
+  }
   div {
     display: flex;
+    @include Tablet-550 {
+      margin-bottom: 20px;
+    }
     h2 {
       font-weight: 700;
       font-size: 32px;
@@ -31,16 +37,30 @@
   }
 }
 
+.cartList {
+  @include Tablet-768 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  @include Tablet-550 {
+    flex-direction: column;
+  }
   p {
     font-weight: 400;
     font-size: 22px;
     letter-spacing: 0.01em;
     color: $font_color_dark;
+    @include Tablet-550 {
+      margin-bottom: 10px;
+    }
     span {
       font-weight: 700;
       color: $color_acent;
@@ -52,6 +72,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include Tablet-550 {
+    flex-direction: column-reverse;
+  }
+  button {
+    @include Tablet-550 {
+      margin-bottom: 20px;
+    }
+  }
   .btnBuy {
     background-color: $color_acent;
     border: none;

@@ -18,6 +18,11 @@
     @content;
   }
 }
+@mixin Tablet-550 {
+  @media(max-width: 600px){
+    @content;
+  }
+}
 @mixin MobileL-425 {
   @media(max-width: 425px){
     @content;
