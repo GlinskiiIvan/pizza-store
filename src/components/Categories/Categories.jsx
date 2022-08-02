@@ -2,14 +2,20 @@ import React from 'react';
 import styles from './Categories.module.scss'
 
 const Categories = (props) => {
+    const categories = [
+        'Все',
+        'Мясные',
+        'Вегетарианские',
+        'Гриль',
+        'Острые',
+        'Закрытые',
+    ]
+
     return (
         <ul className={styles.wrapper}>
-            <li className={`${styles.item} ${styles.active}`}>Все</li>
-            <li className={styles.item}>Мясные</li>
-            <li className={styles.item}>Вегетарианские</li>
-            <li className={styles.item}>Гриль</li>
-            <li className={styles.item}>Острые</li>
-            <li className={styles.item}>Закрытые</li>
+            {
+                categories.map((item) => <li key={item} className={`${styles.item}`}>{item}</li>)
+            }
         </ul>
     );
 };
