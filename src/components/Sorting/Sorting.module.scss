@@ -6,6 +6,9 @@
   position: relative;
   display: flex;
   margin-bottom: 15px;
+  @include Laptop-1024 {
+    margin-bottom: 30px;
+  }
   b {
     font-weight: bold;
     margin-right: 10px;
