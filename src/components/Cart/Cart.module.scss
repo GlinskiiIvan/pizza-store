@@ -1,0 +1,127 @@
+@import "../../vars";
+@import "../../mixins-media";
+@import "../../mixins-adaptive";
+
+.wrapper {
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+  div {
+    display: flex;
+    h2 {
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: 0.01em;
+      color: $font_color_dark;
+      margin-left: .46875em;
+    }
+  }
+  .cartIcon {
+    width: 26px;
+  }
+  .trashcanIcon {
+    width: 11px;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  p {
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 0.01em;
+    color: $font_color_dark;
+    span {
+      font-weight: 700;
+      color: $color_acent;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .btnBuy {
+    background-color: $color_acent;
+    border: none;
+    color: $font_color_light;
+  }
+}
+
+.btn {
+  display: flex;
+  font-weight: 400;
+  font-size: 16px;
+  color: $font_color_gray;
+  padding: .9375em 1.875em;
+  border-radius: 30px;
+  border: 1px solid #D3D3D3;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all .3s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: scale(.95);
+  }
+  p {
+    margin-left: .9375em;
+  }
+}
+
+.cartEmpty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  h2 {
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.01em;
+    color: $font_color_dark;
+    margin-bottom: 15px;
+  }
+  p {
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    color: $font_color_gray;
+    margin-bottom: 60px;
+  }
+  img {
+    max-width: 300px;
+    margin-bottom: 60px;
+  }
+  button {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.015em;
+    color: $font_color_light;
+    background-color: $dark_background;
+    border-radius: 30px;
+    border: none;
+    padding: .9375em 1.875em;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:active {
+      transform: scale(.95);
+    }
+  }
+}
