@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Sorting.module.scss'
 
 const Sorting = (props) => {
+    const [showModal, setShowModal] = useState(false);
+    const [activeSorting, setActiveSorting] = useState(0);
+
     const sorting = [
         'Названию (ASC)',
         'Названию (DESC)',
@@ -9,20 +12,36 @@ const Sorting = (props) => {
         'Цене (DESC)',
     ]
 
+    const toggleShowModalHandler = () => {
+        setShowModal(!showModal);
+    }
+
+    const changeSortingHandler = (index) => {
+        setActiveSorting(index);
+        toggleShowModalHandler();
+    }
+
     return (
         <div className={styles.wrapper}>
             <b>Сортировка по:</b>
-            <p>Названию &#708;</p>
+            <p onClick={toggleShowModalHandler}>{sorting[activeSorting]}</p>
             <div className={`${styles.options} ${styles.active}`}>
-                <ul>
-                    {
-                        sorting.map((item) => <li key={item} className={``} >{item}</li>)
-                    }
-                    {/*<li className={styles.active}>Названию &#708;</li>
-                    <li>Названию &#709;</li>
-                    <li>Цене &#708;</li>
-                    <li>Цене &#709;</li>*/}
-                </ul>
+                {
+                    showModal && (
+                        <ul>
+                            {
+                                sorting.map((item, index) => (
+                                    <li
+                                        key={item}
+                                        className={`${activeSorting === index ? styles.active : ''}`}
+                                        onClick={() => changeSortingHandler(index)}>
+                                        {item}
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    )
+                }
             </div>
         </div>
     );
