@@ -23,13 +23,16 @@ const PizzaList = (props) => {
     if(!pizzas) return;
 
     return (
-        <div className={styles.wrapper}>
-            {
-                pizzas.map((pizza) => (
-                    <PizzaCard key={pizza.id} data={pizza} />
-                ))
-            }
-        </div>
+        <React.Fragment>
+            <h2 className={styles.title}>{storeState.activeCategory} пиццы</h2>
+            <div className={styles.wrapper}>
+                {
+                    pizzas.map((pizza) => (
+                        <PizzaCard key={pizza.id} data={pizza} />
+                    ))
+                }
+            </div>
+        </React.Fragment>
     );
 };
 

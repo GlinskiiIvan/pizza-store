@@ -25,7 +25,6 @@ const MainPage = (props) => {
                     <input type="text" placeholder='Поиск...'/>
                 </div>
             </div>
-            <h2 className={styles.title}>Все пиццы</h2>
             <PizzaList />
         </div>
     );
