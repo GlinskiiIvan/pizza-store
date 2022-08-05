@@ -14,6 +14,7 @@
     font-size: 18px;
     margin: 0 5px;
     color: $color_acent;
+    opacity: 1;
     cursor: pointer;
     transition: all .3s ease;
     &.active {
@@ -21,6 +22,12 @@
       color: $font_color_light;
       font-weight: bold;
       cursor: default;
+    }
+    &.disabled {
+      cursor: default;
+      border: 2px solid $font_color_gray;
+      color: $font_color_gray;
+      opacity: 0.6;
     }
   }
 }

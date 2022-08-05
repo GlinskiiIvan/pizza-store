@@ -6,6 +6,7 @@ const initialState = {
     searchValue: '',
     activeSorting: 'title',
     activeCategory: 'Все',
+    activePage: 1,
 };
 
 const reducer = (state, action) => {
@@ -18,6 +19,9 @@ const reducer = (state, action) => {
         }
         case 'CHANGE_CATEGORY': {
             return {...state, activeCategory: action.newCategory}
+        }
+        case 'CHANGE_PAGE': {
+            return {...state, activePage: action.newPage}
         }
         default: {
             return state;

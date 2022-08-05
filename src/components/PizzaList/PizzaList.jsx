@@ -17,11 +17,13 @@ const PizzaList = (props) => {
 
     const search = storeState.searchValue !== '' ? `title=${storeState.searchValue}` : '';
 
+    const page = `page=${storeState.activePage}&limit=4`;
+
     useEffect(() => {
-        fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${search}&${sortBy}&${filter}`)
+        fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${search}&${sortBy}&${filter}&${page}`)
             .then((data) => data.json())
             .then((json) => setPizzas(json))
-    }, [storeState.activeSorting, storeState.activeCategory, storeState.searchValue])
+    }, [storeState.activeSorting, storeState.activeCategory, storeState.searchValue, storeState.activePage])
 
     if(!pizzas) return;
 

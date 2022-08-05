@@ -3,13 +3,10 @@
 @import "../../mixins-adaptive";
 
 .wrapper {
-  /*display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;*/
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   gap: 50px 20px;
+  margin-bottom: 20px;
   @include LaptopL-1440 {
     grid-template-columns: 1fr 1fr 1fr;
   }
