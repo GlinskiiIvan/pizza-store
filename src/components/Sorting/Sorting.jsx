@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './Sorting.module.scss'
+import {StoreContext} from "../../context/StoreContext";
 
-const Sorting = (props) => {
+const Sorting = () => {
     const [showModal, setShowModal] = useState(false);
     const [activeSorting, setActiveSorting] = useState(0);
+    const [storeState, storeDispatch] = useContext(StoreContext);
 
     const sorting = [
-        'Названию (ASC)',
-        'Названию (DESC)',
-        'Цене (ASC)',
-        'Цене (DESC)',
+        {sortType: 'title', value: 'Названию 👇'},
+        {sortType: '-title', value: 'Названию 👆'},
+        {sortType: 'prices', value: 'Цене 👇'},
+        {sortType: '-prices', value: 'Цене 👆'},
     ]
 
     const toggleShowModalHandler = () => {
@@ -19,30 +21,31 @@ const Sorting = (props) => {
     const changeSortingHandler = (index) => {
         setActiveSorting(index);
         toggleShowModalHandler();
+        storeDispatch({type: 'CHANGE_SORT_TYPE', newSortType: sorting[index].sortType})
     }
 
     return (
         <div className={styles.wrapper}>
             <b>Сортировка по:</b>
-            <p onClick={toggleShowModalHandler}>{sorting[activeSorting]}</p>
-            <div className={`${styles.options} ${styles.active}`}>
-                {
-                    showModal && (
+            <p onClick={toggleShowModalHandler}>{sorting[activeSorting].value}</p>
+            {
+                showModal && (
+                    <div className={`${styles.options} ${styles.active}`}>
                         <ul>
                             {
                                 sorting.map((item, index) => (
                                     <li
-                                        key={item}
+                                        key={item.value}
                                         className={`${activeSorting === index ? styles.active : ''}`}
                                         onClick={() => changeSortingHandler(index)}>
-                                        {item}
+                                        {item.value}
                                     </li>
                                 ))
                             }
                         </ul>
-                    )
-                }
-            </div>
+                    </div>
+                )
+            }
         </div>
     );
 };

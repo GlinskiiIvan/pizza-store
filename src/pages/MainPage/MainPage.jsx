@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Categories from "../../components/Categories/Categories";
 import Sorting from "../../components/Sorting/Sorting";
