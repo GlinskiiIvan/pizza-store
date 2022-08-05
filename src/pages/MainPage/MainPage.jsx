@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import Categories from "../../components/Categories/Categories";
 import Sorting from "../../components/Sorting/Sorting";
 import PizzaList from "../../components/PizzaList/PizzaList";
 
 import styles from './MainPage.module.scss'
+import {StoreContext} from "../../context/StoreContext";
 
 const MainPage = (props) => {
+    const [storeState, storeDispatch] = useContext(StoreContext);
+
     return (
         <div>
             <div>
@@ -22,7 +25,12 @@ const MainPage = (props) => {
                         <line fill="none" id="XMLID_44_" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
                               stroke-miterlimit="10" stroke-width="2" x1="27" x2="20.366" y1="27" y2="20.366"></line>
                     </svg>
-                    <input type="text" placeholder='Поиск...'/>
+                    <input
+                        type="text"
+                        placeholder='Поиск...'
+                        value={storeState.searchValue}
+                        onChange={(event) => storeDispatch({type: 'SEARCH', newSearchValue: event.target.value})}
+                    />
                 </div>
             </div>
             <PizzaList />

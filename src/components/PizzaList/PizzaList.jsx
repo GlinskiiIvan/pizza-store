@@ -14,11 +14,13 @@ const PizzaList = (props) => {
 
     const filter = storeState.activeCategory === 'Все' ? '' : `filter=${storeState.activeCategory}`;
 
+    const search = storeState.searchValue !== '' ? `title=${storeState.searchValue}` : '';
+
     useEffect(() => {
-        fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${sortBy}&${filter}`)
+        fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${search}&${sortBy}&${filter}`)
             .then((data) => data.json())
             .then((json) => setPizzas(json))
-    }, [storeState.activeSorting, storeState.activeCategory])
+    }, [storeState.activeSorting, storeState.activeCategory, storeState.searchValue])
 
     if(!pizzas) return;
 

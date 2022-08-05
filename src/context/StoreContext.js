@@ -3,12 +3,16 @@ import React, {useReducer} from "react";
 export const StoreContext = React.createContext();
 
 const initialState = {
+    searchValue: '',
     activeSorting: 'title',
-    activeCategory: 'Все'
+    activeCategory: 'Все',
 };
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'SEARCH': {
+            return {...state, searchValue: action.newSearchValue}
+        }
         case 'CHANGE_SORT_TYPE': {
             return {...state, activeSorting: action.newSortType}
         }
