@@ -10,13 +10,15 @@ const PizzaList = (props) => {
 
     const sort = storeState.activeSorting.replace('-', '');
     const order = storeState.activeSorting.includes('-') ? 'asc' : 'desc';
-    const sortBy = `?sortBy=${sort}&order=${order}`;
+    const sortBy = `sortBy=${sort}&order=${order}`;
+
+    const filter = storeState.activeCategory == 'Все' ? '' : `filter=${storeState.activeCategory}`;
 
     useEffect(() => {
-        fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas${sortBy}`)
+        fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${sortBy}&${filter}`)
             .then((data) => data.json())
             .then((json) => setPizzas(json))
-    }, [storeState.activeSorting])
+    }, [storeState.activeSorting, storeState.activeCategory])
 
     if(!pizzas) return;
 

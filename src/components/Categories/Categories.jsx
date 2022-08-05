@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './Categories.module.scss'
+import {StoreContext} from "../../context/StoreContext";
 
 const Categories = (props) => {
     const [activeCategory, setActiveCategory] = useState(0);
+    const [storeState, storeDispatch] = useContext(StoreContext);
 
     const categories = [
         'Все',
@@ -15,6 +17,7 @@ const Categories = (props) => {
 
     const setCategoryHandler = (index) => {
         setActiveCategory(index);
+        storeDispatch({type: 'CHANGE_CATEGORY', newCategory: categories[index]})
     }
 
     return (
