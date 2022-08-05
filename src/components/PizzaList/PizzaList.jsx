@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import styles from './PizzaList.module.scss'
 import PizzaCard from "./PizzaCard/PizzaCard";
 import {StoreContext} from "../../context/StoreContext";
+import Pagination from "../Pagination/Pagination";
 
 const PizzaList = (props) => {
     const [storeState, storeDispatch] = useContext(StoreContext);
@@ -34,6 +35,7 @@ const PizzaList = (props) => {
                     ))
                 }
             </div>
+            <Pagination />
         </React.Fragment>
     );
 };

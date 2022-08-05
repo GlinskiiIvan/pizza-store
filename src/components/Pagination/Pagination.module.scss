@@ -1,0 +1,26 @@
+@import "../../vars";
+@import "../../mixins-media";
+@import "../../mixins-adaptive";
+
+.wrapper {
+  display: flex;
+  li {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 100%;
+    border: 2px solid $color_acent;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 5px;
+    color: $color_acent;
+    cursor: pointer;
+    transition: all .3s ease;
+    &.active {
+      background-color: $color_acent;
+      color: $font_color_light;
+      font-weight: bold;
+      cursor: default;
+    }
+  }
+}
