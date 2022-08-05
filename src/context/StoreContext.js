@@ -4,7 +4,7 @@ export const StoreContext = React.createContext();
 
 const initialState = {
     activeSorting: 'title',
-    activeCategory: 'Острые'
+    activeCategory: 'Все'
 };
 
 const reducer = (state, action) => {

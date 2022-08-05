@@ -9,6 +9,36 @@
   margin-bottom: 15px;
   @include Laptop-1024 {
     flex-direction: column-reverse;
+    margin-bottom: 0;
+  }
+}
+
+.search {
+  display: flex;
+  border: 1px solid $font_color_gray;
+  border-radius: 10px;
+  padding: 5px 15px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  @include Laptop-1024 {
+    margin: 0px auto 20px auto;
+  }
+  svg {
+    margin-right: 5px;
+    width: 20px;
+    circle {
+      stroke: $font_color_gray;
+    }
+    line {
+      stroke: $font_color_gray;
+    }
+  }
+  input {
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    color: $font_color_dark;
   }
 }
 
