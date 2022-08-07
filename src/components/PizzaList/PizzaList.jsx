@@ -3,17 +3,18 @@ import styles from './PizzaList.module.scss'
 import PizzaCard from "./PizzaCard/PizzaCard";
 import {StoreContext} from "../../context/StoreContext";
 import Pagination from "../Pagination/Pagination";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 const PizzaList = (props) => {
     const activeCategory = useSelector(state => state.filter.activeCategory);
+    const activeSorting = useSelector(state => state.filter.activeSorting.sortType);
 
     const [storeState, storeDispatch] = useContext(StoreContext);
 
     const [pizzas, setPizzas] = useState([]);
 
-    const sort = storeState.activeSorting.replace('-', '');
-    const order = storeState.activeSorting.includes('-') ? 'asc' : 'desc';
+    const sort = activeSorting.replace('-', '');
+    const order = activeSorting.includes('-') ? 'asc' : 'desc';
     const sortBy = `sortBy=${sort}&order=${order}`;
 
     const filter = activeCategory === 'Все' ? '' : `filter=${activeCategory}`;
@@ -26,7 +27,7 @@ const PizzaList = (props) => {
         fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${search}&${sortBy}&${filter}&${page}`)
             .then((data) => data.json())
             .then((json) => setPizzas(json))
-    }, [storeState.activeSorting, activeCategory, storeState.searchValue, storeState.activePage])
+    }, [activeSorting, activeCategory, storeState.searchValue, storeState.activePage])
 
     if(!pizzas) return;
 

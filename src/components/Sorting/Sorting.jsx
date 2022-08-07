@@ -1,43 +1,46 @@
-import React, {useContext, useState} from 'react';
-import {StoreContext} from "../../context/StoreContext";
+
 import styles from './Sorting.module.scss'
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+import {setActiveSorting} from "../../redux/slices/filterSlice";
+
+const sorting = [
+    {sortType: 'title', value: 'Названию 👇'},
+    {sortType: '-title', value: 'Названию 👆'},
+    {sortType: 'prices', value: 'Цене 👇'},
+    {sortType: '-prices', value: 'Цене 👆'},
+]
 
 const Sorting = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [activeSorting, setActiveSorting] = useState(0);
-    const [storeState, storeDispatch] = useContext(StoreContext);
+    const dispatch = useDispatch();
 
-    const sorting = [
-        {sortType: 'title', value: 'Названию 👇'},
-        {sortType: '-title', value: 'Названию 👆'},
-        {sortType: 'prices', value: 'Цене 👇'},
-        {sortType: '-prices', value: 'Цене 👆'},
-    ]
+    const activeSorting = useSelector(state => state.filter.activeSorting);
+
+    const [showModal, setShowModal] = useState(false);
 
     const toggleShowModalHandler = () => {
         setShowModal(!showModal);
     }
 
-    const changeSortingHandler = (index) => {
-        setActiveSorting(index);
+    const changeSortingHandler = (item) => {
         toggleShowModalHandler();
-        storeDispatch({type: 'CHANGE_SORT_TYPE', newSortType: sorting[index].sortType})
+        dispatch(setActiveSorting(item))
     }
 
     return (
         <div className={styles.wrapper}>
             <b>Сортировка по:</b>
-            <p onClick={toggleShowModalHandler}>{sorting[activeSorting].value}</p>
+            <p onClick={toggleShowModalHandler}>{activeSorting.value}</p>
             {
                 showModal && (
                     <div className={`${styles.options} ${styles.active}`}>
                         <ul>
                             {
-                                sorting.map((item, index) => (
+                                sorting.map((item) => (
                                     <li
                                         key={item.value}
-                                        className={`${activeSorting === index ? styles.active : ''}`}
-                                        onClick={() => changeSortingHandler(index)}>
+                                        className={`${activeSorting === item ? styles.active : ''}`}
+                                        onClick={() => changeSortingHandler(item)}>
                                         {item.value}
                                     </li>
                                 ))
