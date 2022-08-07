@@ -9,8 +9,7 @@ const PizzaList = (props) => {
     const activeCategory = useSelector(state => state.filter.activeCategory);
     const activeSorting = useSelector(state => state.filter.activeSorting.sortType);
     const searchValue = useSelector(state => state.filter.searchValue);
-
-    const [storeState, storeDispatch] = useContext(StoreContext);
+    const activePage = useSelector(state => state.filter.activePage);
 
     const [pizzas, setPizzas] = useState([]);
 
@@ -22,13 +21,13 @@ const PizzaList = (props) => {
 
     const search = searchValue !== '' ? `title=${searchValue}` : '';
 
-    const page = `page=${storeState.activePage}&limit=4`;
+    const page = `page=${activePage}&limit=4`;
 
     useEffect(() => {
         fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${search}&${sortBy}&${filter}&${page}`)
             .then((data) => data.json())
             .then((json) => setPizzas(json))
-    }, [activeSorting, activeCategory, searchValue, storeState.activePage])
+    }, [activeSorting, activeCategory, searchValue, activePage])
 
     if(!pizzas) return;
 

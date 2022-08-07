@@ -1,45 +1,42 @@
-import React, {useContext, useState} from 'react';
 import styles from './Pagination.module.scss'
-import {StoreContext} from "../../context/StoreContext";
+import {useDispatch, useSelector} from "react-redux";
+import {setActivePage} from "../../redux/slices/filterSlice";
+
+const pages = [1, 2, 3];
 
 const Pagination = (props) => {
-    const [storeState, storeDispatch] = useContext(StoreContext);
+    const dispatch = useDispatch();
+    const activePage = useSelector(state => state.filter.activePage);
 
-    const [activePage, setActivePage] = useState(0)
-    const pages = [1, 2, 3];
-
-    const changePaheHandler = (index) => {
-        setActivePage(index);
-        storeDispatch({type: 'CHANGE_PAGE', newPage: pages[index]})
+    const changePaheHandler = (page) => {
+        dispatch(setActivePage(page));
     }
     const backPageHandler = () => {
-        if (activePage > 0) {
-            setActivePage(activePage -1);
-            storeDispatch({type: 'CHANGE_PAGE', newPage: pages[activePage - 1]})
+        if (activePage > 1) {
+            dispatch(setActivePage(activePage -1))
         }
     }
     const nextPageHandler = () => {
-        if (activePage < 2) {
-            setActivePage(activePage + 1);
-            storeDispatch({type: 'CHANGE_PAGE', newPage:  pages[activePage + 1]})
+        if (activePage < 3) {
+            dispatch(setActivePage(activePage + 1));
         }
     }
 
     return (
         <ul className={styles.wrapper}>
-            <li className={activePage < 1 ? styles.disabled : ''} onClick={backPageHandler}>&#8249;</li>
+            <li className={activePage < 2 ? styles.disabled : ''} onClick={backPageHandler}>&#8249;</li>
             {
                 pages.map((page, index) => (
                     <li
                         key={page}
-                        className={activePage === index ? styles.active : ''}
-                        onClick={() => changePaheHandler(index)}
+                        className={activePage === page ? styles.active : ''}
+                        onClick={() => changePaheHandler(page)}
                     >
                         {page}
                     </li>
                 ))
             }
-            <li className={activePage > 1 ? styles.disabled : ''} onClick={nextPageHandler}>&#8250;</li>
+            <li className={activePage > 2 ? styles.disabled : ''} onClick={nextPageHandler}>&#8250;</li>
         </ul>
     );
 };
