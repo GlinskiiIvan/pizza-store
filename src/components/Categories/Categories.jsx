@@ -1,23 +1,23 @@
-import React, {useContext, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {setActiveCategory} from "../../redux/slices/filterSlice";
+
 import styles from './Categories.module.scss'
-import {StoreContext} from "../../context/StoreContext";
+
+const categories = [
+    'Все',
+    'Мясные',
+    'Вегетарианские',
+    'Гриль',
+    'Острые',
+    'Закрытые',
+]
 
 const Categories = (props) => {
-    const [activeCategory, setActiveCategory] = useState(0);
-    const [storeState, storeDispatch] = useContext(StoreContext);
+    const dispatch = useDispatch();
+    const activeCategory = useSelector(state => state.filter.activeCategory);
 
-    const categories = [
-        'Все',
-        'Мясные',
-        'Вегетарианские',
-        'Гриль',
-        'Острые',
-        'Закрытые',
-    ]
-
-    const setCategoryHandler = (index) => {
-        setActiveCategory(index);
-        storeDispatch({type: 'CHANGE_CATEGORY', newCategory: categories[index]})
+    const setCategoryHandler = (item) => {
+        dispatch(setActiveCategory(item));
     }
 
     return (
@@ -26,8 +26,8 @@ const Categories = (props) => {
                 categories.map((item, index) => (
                     <li
                         key={item}
-                        className={`${styles.item} ${activeCategory == index ? styles.active : ''}`}
-                        onClick={() => setCategoryHandler(index)}
+                        className={`${styles.item} ${activeCategory === item ? styles.active : ''}`}
+                        onClick={() => setCategoryHandler(item)}
                     >
                         {item}
                     </li>

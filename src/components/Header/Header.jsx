@@ -3,7 +3,7 @@ import styles from './Header.module.scss'
 
 const Header = (props) => {
     return (
-        <header>
+        <header className={styles.header}>
             <div className={styles.logo}>
                 <img src="./img/logo.svg" alt="logo pizza-store"/>
                 <div>

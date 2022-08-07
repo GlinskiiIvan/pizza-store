@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
-import styles from './Sorting.module.scss'
 import {StoreContext} from "../../context/StoreContext";
+import styles from './Sorting.module.scss'
 
 const Sorting = () => {
     const [showModal, setShowModal] = useState(false);
