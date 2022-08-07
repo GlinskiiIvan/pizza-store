@@ -1,17 +1,30 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 
 import Categories from "../../components/Categories/Categories";
 import Sorting from "../../components/Sorting/Sorting";
 import PizzaList from "../../components/PizzaList/PizzaList";
 
-import styles from './MainPage.module.scss'
-import {StoreContext} from "../../context/StoreContext";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setSearchValue} from "../../redux/slices/filterSlice";
+
+import debounce from 'lodash.debounce';
+
+import styles from './MainPage.module.scss'
 
 const MainPage = (props) => {
     const dispatch = useDispatch();
-    const searchValue = useSelector(state => state.filter.searchValue);
+
+    const [value, setValue] = React.useState('');
+
+    const updateSearchValue = React.useCallback(
+        debounce((event) => {
+            dispatch(setSearchValue(event.target.value))
+        }, 1000), []
+    );
+    const changeSearchValueHandler = (event) => {
+        setValue(event.target.value);
+        updateSearchValue(event);
+    }
 
     return (
         <div>
@@ -31,8 +44,8 @@ const MainPage = (props) => {
                     <input
                         type="text"
                         placeholder='Поиск...'
-                        value={searchValue}
-                        onChange={(event) => dispatch(setSearchValue(event.target.value))}
+                        value={value}
+                        onChange={(event) => changeSearchValueHandler(event)}
                     />
                 </div>
             </div>

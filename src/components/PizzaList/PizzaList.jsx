@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './PizzaList.module.scss'
 import PizzaCard from "./PizzaCard/PizzaCard";
-import {StoreContext} from "../../context/StoreContext";
 import Pagination from "../Pagination/Pagination";
 import {useSelector} from "react-redux";
 
