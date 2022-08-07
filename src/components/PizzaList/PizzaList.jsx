@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 const PizzaList = (props) => {
     const activeCategory = useSelector(state => state.filter.activeCategory);
     const activeSorting = useSelector(state => state.filter.activeSorting.sortType);
+    const searchValue = useSelector(state => state.filter.searchValue);
 
     const [storeState, storeDispatch] = useContext(StoreContext);
 
@@ -19,7 +20,7 @@ const PizzaList = (props) => {
 
     const filter = activeCategory === 'Все' ? '' : `filter=${activeCategory}`;
 
-    const search = storeState.searchValue !== '' ? `title=${storeState.searchValue}` : '';
+    const search = searchValue !== '' ? `title=${searchValue}` : '';
 
     const page = `page=${storeState.activePage}&limit=4`;
 
@@ -27,13 +28,13 @@ const PizzaList = (props) => {
         fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?${search}&${sortBy}&${filter}&${page}`)
             .then((data) => data.json())
             .then((json) => setPizzas(json))
-    }, [activeSorting, activeCategory, storeState.searchValue, storeState.activePage])
+    }, [activeSorting, activeCategory, searchValue, storeState.activePage])
 
     if(!pizzas) return;
 
     return (
         <React.Fragment>
-            <h2 className={styles.title}>{storeState.activeCategory} пиццы</h2>
+            <h2 className={styles.title}>{activeCategory} пиццы</h2>
             <div className={styles.wrapper}>
                 {
                     pizzas.map((pizza) => (

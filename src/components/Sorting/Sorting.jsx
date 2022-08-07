@@ -1,4 +1,3 @@
-
 import styles from './Sorting.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
@@ -13,7 +12,6 @@ const sorting = [
 
 const Sorting = () => {
     const dispatch = useDispatch();
-
     const activeSorting = useSelector(state => state.filter.activeSorting);
 
     const [showModal, setShowModal] = useState(false);
