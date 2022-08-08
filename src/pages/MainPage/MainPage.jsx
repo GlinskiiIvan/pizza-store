@@ -19,7 +19,7 @@ const MainPage = (props) => {
     const updateSearchValue = React.useCallback(
         debounce((event) => {
             dispatch(setSearchValue(event.target.value))
-        }, 1000), []
+        }, 250), []
     );
     const changeSearchValueHandler = (event) => {
         setValue(event.target.value);

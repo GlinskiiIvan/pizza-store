@@ -21,6 +21,7 @@ const PizzaCard = (props) => {
                     {
                         props.data.types.map((item, index) => (
                             <li
+                                key={item}
                                 className={`${activeDough == index ? styles.active : ''}`}
                                 onClick={() => changeDoughHandler(index)}
                             >
@@ -33,6 +34,7 @@ const PizzaCard = (props) => {
                     {
                         props.data.sizes.map((item, index) => (
                             <li
+                                key={item}
                                 className={`${activeSize == index ? styles.active : ''}`}
                                 onClick={() => changeSizeHandler(index)}
                             >
