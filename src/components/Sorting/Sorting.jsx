@@ -1,6 +1,6 @@
 import styles from './Sorting.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {setActiveSorting} from "../../redux/slices/filterSlice";
 
 export const sorting = [
@@ -14,7 +14,23 @@ const Sorting = () => {
     const dispatch = useDispatch();
     const activeSorting = useSelector(state => state.filter.activeSorting);
 
+    const sortRef = useRef();
+
     const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        const clickOutsideHandle = (event) => {
+            if(!event.path.includes(sortRef.current)) {
+                setShowModal(false);
+            }
+        };
+
+        document.querySelector('body').addEventListener('click', clickOutsideHandle)
+
+        return () => {
+            document.querySelector('body').removeEventListener('click', clickOutsideHandle)
+        }
+    }, []);
 
     const toggleShowModalHandler = () => {
         setShowModal(!showModal);
@@ -26,7 +42,7 @@ const Sorting = () => {
     }
 
     return (
-        <div className={styles.wrapper}>
+        <div ref={sortRef} className={styles.wrapper}>
             <b>Сортировка по:</b>
             <p onClick={toggleShowModalHandler}>{activeSorting.value}</p>
             {
