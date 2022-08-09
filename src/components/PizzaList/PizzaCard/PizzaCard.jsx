@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
 import styles from './PizzaCard.module.scss'
+import {useDispatch, useSelector} from "react-redux";
+import {addItem} from "../../../redux/slices/cartSlice";
 
 const PizzaCard = (props) => {
+    const dispatch = useDispatch();
+    const stateCart = useSelector(state => state.cart);
+
+    const items = stateCart.items;
+
     const [activeDough, setActiveDough] = useState(0);
     const [activeSize, setActiveSize] = useState(0);
 
@@ -10,6 +17,23 @@ const PizzaCard = (props) => {
     }
     const changeSizeHandler = (index) => {
         setActiveSize(index);
+    }
+
+    const addItemHandler = () => {
+        const item = {
+            id: props.data.id,
+            imageUrl: props.data.imageUrl,
+            title: props.data.title,
+            type: props.data.types[activeDough],
+            size: props.data.sizes[activeSize],
+            price: props.data.prices[activeSize]
+        };
+
+        dispatch(addItem(item));
+    }
+
+    const getQuantityPizzas = () => {
+        return items.filter((obj) => obj.id === props.data.id).reduce((quantity, obj) => obj.quantity + quantity, 0);
     }
 
     return (
@@ -46,7 +70,7 @@ const PizzaCard = (props) => {
             </div>
             <div className={styles.buy}>
                 <span>{props.data.prices[activeSize]} тг</span>
-                <button>+ Купить <span>0</span></button>
+                <button onClick={addItemHandler}>+ Купить {getQuantityPizzas() > 0 && (<span>{getQuantityPizzas()}</span>)}</button>
             </div>
         </div>
     );
