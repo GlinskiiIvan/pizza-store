@@ -7,35 +7,35 @@ import Pagination from "../Pagination/Pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from 'react-router-dom'
 
-import styles from './PizzaList.module.scss'
 import {sorting} from "../Sorting/Sorting";
 import {setFilters} from "../../redux/slices/filterSlice";
+import {fetchPizzas} from "../../redux/slices/pizzasSlice";
+import {ERROR} from "../../constants";
+
+import styles from './PizzaList.module.scss'
 
 const PizzaList = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const activeCategory = useSelector(state => state.filter.activeCategory);
-    const activeSorting = useSelector(state => state.filter.activeSorting.sortType);
-    const searchValue = useSelector(state => state.filter.searchValue);
-    const activePage = useSelector(state => state.filter.activePage);
+    const filter = useSelector(state => state.filter);
+    const activeCategory = filter.activeCategory;
+    const activeSorting = filter.activeSorting.sortType;
+    const searchValue = filter.searchValue;
+    const activePage = filter.activePage;
 
-    const [pizzas, setPizzas] = useState([]);
+    const {items, status} = useSelector(state => state.pizzas);
 
     const isSearch = useRef(false);
     const isMounted = useRef(false);
 
-    const sort = activeSorting.replace('-', '');
-    const order = activeSorting.includes('-') ? 'asc' : 'desc';
+    const getPizzas = async () => {
+        const sort = activeSorting.replace('-', '');
+        const order = activeSorting.includes('-') ? 'asc' : 'desc';
+        const category = activeCategory === 'Все' ? '' : `category=${activeCategory}`;
+        const search = searchValue !== '' ? `title=${searchValue}` : '';
 
-    const category = activeCategory === 'Все' ? '' : `category=${activeCategory}`;
-
-    const search = searchValue !== '' ? `title=${searchValue}` : '';
-
-    const fetchPizzas = () => {
-        fetch(`https://62e8efe1249bb1284eb6be90.mockapi.io/pizzas?page=${activePage}&limit=4&sortBy=${sort}&order=${order}&${category}&${search}`)
-            .then((data) => data.json())
-            .then((json) => setPizzas(json))
+        dispatch(fetchPizzas({sort, order, category, search, activePage}));
     }
 
     useEffect(() => {
@@ -52,8 +52,8 @@ const PizzaList = (props) => {
     }, [])
 
     useEffect(() => {
+        getPizzas();
         if(!isSearch.current) {
-            fetchPizzas();
         }
 
         isSearch.current = false;
@@ -72,19 +72,33 @@ const PizzaList = (props) => {
         isMounted.current = true;
     }, [activeSorting, activeCategory, searchValue, activePage])
 
-    if(!pizzas) return;
+    if(!items) return;
 
     return (
         <React.Fragment>
-            <h2 className={styles.title}>{activeCategory} пиццы</h2>
-            <div className={styles.wrapper}>
-                {
-                    pizzas.map((pizza) => (
-                        <PizzaCard key={pizza.id} data={pizza} />
-                    ))
-                }
-            </div>
-            <Pagination />
+            {
+                status === ERROR ? (
+                    <div className={styles.pizzasError}>
+                        <h2>Ошибка 😕</h2>
+                        <p>
+                            При получении пицц произошла ошибка. Нам очень жаль за предоставленные неудобства( Повторите попытку позже.
+                        </p>
+                    </div>
+                ) : (
+                    <div>
+                        <h2 className={styles.title}>{activeCategory} пиццы</h2>
+                        <div className={styles.wrapper}>
+                            {
+                                items.map((pizza) => (
+                                    <PizzaCard key={pizza.id} data={pizza} />
+                                ))
+                            }
+                        </div>
+                        <Pagination />
+                    </div>
+                )
+            }
+
         </React.Fragment>
     );
 };

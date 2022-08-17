@@ -25,3 +25,26 @@
   color: $font_color_dark;
   margin-bottom: 20px;
 }
+
+.pizzasError {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  h2 {
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.01em;
+    color: $font_color_dark;
+    margin-bottom: 15px;
+  }
+  p {
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    color: $font_color_gray;
+    margin-bottom: 60px;
+  }
+}

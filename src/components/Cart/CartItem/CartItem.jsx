@@ -15,7 +15,7 @@ const CartItem = (props) => {
     const clearItemHandler = () => {
         dispatch(removeItem(props.data))
     }
-    
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.info}>
